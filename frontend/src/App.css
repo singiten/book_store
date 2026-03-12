@@ -1,0 +1,293 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.header {
+  background: linear-gradient(135deg, #078930 0%, #FCDD09 50%, #DA121A 100%);
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-amharic {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.logo-english {
+  color: rgba(255,255,255,0.9);
+  font-size: 0.8rem;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.3s;
+}
+
+.nav-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.register-link {
+  background: rgba(255,255,255,0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-name {
+  color: white;
+  font-weight: 500;
+}
+
+.logout-btn {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  padding: 0.3rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+
+.logout-btn:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+.auth-links {
+  display: flex;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+  }
+
+  .logo-amharic {
+    font-size: 1.2rem;
+  }
+
+  .nav-menu {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .nav-menu {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+/* Logo Styles */
+.logo {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-icon {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s;
+}
+
+.logo:hover .logo-icon {
+  transform: scale(1.1);
+}
+
+.kuraz-icon {
+  font-size: 1.8rem;
+  position: absolute;
+  animation: floatKuraz 3s ease-in-out infinite;
+}
+
+.candle-icon {
+  font-size: 1.2rem;
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  background: #FCDD09;
+  padding: 0.2rem;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+@keyframes floatKuraz {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-amharic {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.logo-english {
+  color: rgba(255,255,255,0.9);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .logo-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .kuraz-icon {
+    font-size: 1.4rem;
+  }
+
+  .candle-icon {
+    font-size: 1rem;
+  }
+
+  .logo-amharic {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    gap: 0.5rem;
+  }
+
+  .logo-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .book-icon {
+  font-size: 25rem;
+  position: absolute;
+  animation: floatBook 3s ease-in-out infinite;
+  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+}
+
+  .candle-icon {
+    font-size: 0.8rem;
+  }
+
+  .logo-amharic {
+    font-size: 1rem;
+  }
+
+  .logo-english {
+    font-size: 0.7rem;
+  }
+}
+/* Toast customizations */
+.Toastify__toast {
+  border-radius: 10px !important;
+  font-family: 'Segoe UI', sans-serif !important;
+}
+
+.Toastify__toast--success {
+  background: #078930 !important;
+}
+
+.Toastify__toast--error {
+  background: #DA121A !important;
+}
+
+.Toastify__toast--info {
+  background: #FCDD09 !important;
+  color: #333 !important;
+}
+
+.Toastify__progress-bar {
+  background: rgba(255, 255, 255, 0.7) !important;
+}

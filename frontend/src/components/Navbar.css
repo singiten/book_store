@@ -1,0 +1,326 @@
+/* Navbar.css */
+.navbar {
+  background: rgb(116, 47, 15);
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 3px solid #DA121A;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.8rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo Styles */
+.nav-logo {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s;
+}
+
+.nav-logo:hover {
+  transform: scale(1.05);
+}
+
+.logo-amharic {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #078930;
+  line-height: 1.2;
+  font-family: 'Noto Sans Ethiopic', 'Segoe UI', sans-serif;
+}
+
+.logo-english {
+  font-size: 0.9rem;
+  color: #DA121A;
+  opacity: 0.9;
+  letter-spacing: 1px;
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.3s;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.nav-link:hover {
+  color: #078930;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #DA121A;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Cart Link */
+.cart-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.cart-badge {
+  background: #DA121A;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 20px;
+  min-width: 22px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(218, 18, 26, 0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Auth Buttons */
+.auth-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.login-btn {
+  color: #078930;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  border: 2px solid transparent;
+}
+
+.login-btn:hover {
+  background: rgba(7, 137, 48, 0.1);
+  border-color: #078930;
+}
+
+.login-btn::after {
+  display: none;
+}
+
+.register-btn {
+  background: #DA121A;
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: all 0.3s;
+  box-shadow: 0 4px 10px rgba(218, 18, 26, 0.3);
+}
+
+.register-btn:hover {
+  background: #078930;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(7, 137, 48, 0.3);
+}
+
+.register-btn::after {
+  display: none;
+}
+
+/* Logout Button */
+.logout-btn {
+  background: none;
+  border: 2px solid #DA121A;
+  color: #DA121A;
+  padding: 0.5rem 1.5rem;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.logout-btn:hover {
+  background: #DA121A;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(218, 18, 26, 0.3);
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #078930;
+  transition: transform 0.3s;
+  line-height: 1;
+  padding: 0;
+}
+
+.menu-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0.8rem 1rem;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-link {
+    width: 100%;
+    text-align: center;
+    padding: 0.8rem;
+    font-size: 1.1rem;
+  }
+
+  .nav-link::after {
+    bottom: 5px;
+    left: 25%;
+    width: 50%;
+  }
+
+  .nav-link:hover::after {
+    width: 50%;
+  }
+
+  .auth-links {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .login-btn, .register-btn, .logout-btn {
+    width: 100%;
+    text-align: center;
+    padding: 0.8rem;
+  }
+
+  .cart-link {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-amharic {
+    font-size: 1.4rem;
+  }
+  
+  .logo-english {
+    font-size: 0.75rem;
+  }
+
+  .nav-container {
+    padding: 0.6rem 0.8rem;
+  }
+}
+
+/* Active Link State */
+.nav-link.active {
+  color: #078930;
+  font-weight: 600;
+}
+
+.nav-link.active::after {
+  width: 100%;
+  background: #078930;
+}
+
+/* Cart Badge Animation for Mobile */
+@media (max-width: 768px) {
+  .cart-badge {
+    display: inline-block;
+    margin-left: 0.5rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .navbar {
+    display: none;
+  }
+}
+/* User Greeting */
+.user-greeting {
+  color: #078930;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.5rem 1rem;
+  background: rgba(7, 137, 48, 0.1);
+  border-radius: 30px;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(7, 137, 48, 0.2);
+  transition: all 0.3s;
+}
+
+.user-greeting:hover {
+  background: rgba(7, 137, 48, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Responsive for user greeting */
+@media (max-width: 768px) {
+  .user-greeting {
+    width: 100%;
+    justify-content: center;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+  }
+}

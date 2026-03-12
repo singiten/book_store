@@ -1,0 +1,262 @@
+.footer {
+  background: #1a1a1a;
+  color: #f5f5f5;
+  margin-top: 4rem;
+  position: relative;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+/* Ethiopian Flag Stripe */
+.flag-stripe {
+  display: flex;
+  height: 5px;
+  width: 100%;
+}
+
+.stripe-green {
+  flex: 1;
+  background: #078930;
+}
+
+.stripe-yellow {
+  flex: 1;
+  background: #FCDD09;
+}
+
+.stripe-red {
+  flex: 1;
+  background: #DA121A;
+}
+
+/* Footer Logo */
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.footer-logo-icon {
+  font-size: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-logo-text {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #FCDD09;
+}
+
+.footer-description {
+  color: #999;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.footer-description-english {
+  color: #777;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+/* Social Links */
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.social-link {
+  width: 35px;
+  height: 35px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FCDD09;
+  text-decoration: none;
+  transition: all 0.3s;
+  font-size: 1.2rem;
+}
+
+.social-link:hover {
+  background: #DA121A;
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* Footer Titles */
+.footer-title {
+  color: #FCDD09;
+  font-size: 1.1rem;
+  margin: 0 0 1.5rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.footer-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #078930, #FCDD09, #DA121A);
+}
+
+/* Footer Links */
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.75rem;
+}
+
+.footer-links a {
+  color: #999;
+  text-decoration: none;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+  display: inline-block;
+}
+
+.footer-links a:hover {
+  color: #FCDD09;
+  transform: translateX(5px);
+}
+
+/* Contact Info */
+.contact-info {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-info li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.contact-icon {
+  font-size: 1.1rem;
+  min-width: 20px;
+  color: #FCDD09;
+}
+
+/* Bottom Bar */
+.footer-bottom {
+  background: #111;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid #333;
+}
+
+.footer-bottom-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.copyright {
+  color: #666;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.footer-bottom-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-bottom-links a {
+  color: #666;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.3s;
+}
+
+.footer-bottom-links a:hover {
+  color: #FCDD09;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .footer-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    padding: 2rem 1rem;
+  }
+
+  .footer-bottom-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-bottom-links {
+    justify-content: center;
+  }
+
+  .footer-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+  }
+
+  .footer-section {
+    text-align: center;
+  }
+
+  .footer-logo {
+    justify-content: center;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .contact-info li {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-bottom-links {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
