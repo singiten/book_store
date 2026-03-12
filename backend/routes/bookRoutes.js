@@ -4,7 +4,8 @@ const Book = require('../models/Book');
 const Category = require('../models/Category');
 const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
-const upload = require('../middleware/upload');
+// const upload = require('../middleware/upload'); // ← OLD (comment out)
+const upload = require('../middleware/cloudinaryUpload'); // ← NEW
 
 // Helper function to generate slug
 const generateSlug = (text) => {
@@ -176,7 +177,7 @@ router.post('/', auth, admin, async (req, res) => {
   }
 });
 
-// SIMPLIFIED: POST upload book cover - ONLY needs bookId and coverImage
+// UPDATED: POST upload book cover with Cloudinary - ONLY needs bookId and coverImage
 router.post('/upload-cover', auth, admin, upload.single('coverImage'), async (req, res) => {
   try {
     console.log('📝 Uploading cover for book ID:', req.body.bookId);
@@ -191,26 +192,27 @@ router.post('/upload-cover', auth, admin, upload.single('coverImage'), async (re
       return res.status(400).json({ error: 'Cover image is required' });
     }
     
-    // Find the book - all other info is already in database
+    // Find the book
     const book = await Book.findById(bookId);
     
     if (!book) {
       return res.status(404).json({ error: 'Book not found' });
     }
     
-    // Update only the cover image
-    const coverImagePath = `/uploads/covers/${req.file.filename}`;
-    book.coverImage = coverImagePath;
+    // Update with Cloudinary URL (full URL, not local path)
+    book.coverImage = req.file.path; // Cloudinary returns full URL
     
     await book.save();
     
     console.log('✅ Cover uploaded for book:', book.title);
+    console.log('✅ Cloudinary URL:', req.file.path);
+    
     res.json({ 
       message: 'Cover uploaded successfully',
       book: {
         id: book._id,
         title: book.title,
-        coverImage: coverImagePath
+        coverImage: req.file.path
       }
     });
   } catch (error) {
@@ -259,9 +261,9 @@ router.put('/:id/with-image', auth, admin, upload.single('coverImage'), async (r
       updateData.slug = generateSlug(updateData.title);
     }
     
-    // If new image uploaded, update coverImage
+    // If new image uploaded, update coverImage with Cloudinary URL
     if (req.file) {
-      updateData.coverImage = `/uploads/covers/${req.file.filename}`;
+      updateData.coverImage = req.file.path; // Cloudinary URL
     }
     
     // Parse tags if they come as string
