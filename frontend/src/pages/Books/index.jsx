@@ -30,7 +30,7 @@ const Books = () => {
         category: filters.category || undefined
       };
       const response = await getBooks(params);
-      console.log('Books data:', response.data.books); // Debug log
+      console.log('Books data:', response.data.books);
       setBooks(response.data.books);
       setTotalPages(response.data.totalPages);
       setLoading(false);
@@ -64,7 +64,6 @@ const Books = () => {
       </div>
 
       <div className="books-layout">
-        {/* Sidebar Filters */}
         <aside className="filters-sidebar">
           <h3>Filter by Category</h3>
           <select 
@@ -81,25 +80,33 @@ const Books = () => {
           </select>
         </aside>
 
-        {/* Books Grid */}
         <div className="books-grid">
           {books.map(book => (
             <Link to={`/books/${book.slug}`} key={book._id} className="book-card">
-              {/* SIMPLIFIED IMAGE DISPLAY */}
               <div className="book-image-container">
-                {book.coverImage && book.coverImage.includes('cloudinary') ? (
-                  <img 
-                    src={book.coverImage} 
-                    alt={book.title}
-                    onError={(e) => {
-                      console.log('Image failed to load:', book.coverImage);
-                      e.target.style.display = 'none';
-                    }}
-                    onLoad={() => console.log('Image loaded successfully')}
-                  />
-                ) : (
-                  <div className="no-image">📚</div>
-                )}
+                {/* DIRECT DISPLAY - NO CONDITIONS */}
+                <img 
+                  src={book.coverImage} 
+                  alt={book.title}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  onError={(e) => {
+                    console.log('Failed to load:', book.coverImage);
+                    e.target.style.display = 'none';
+                    // Show fallback text
+                    const parent = e.target.parentElement;
+                    if (parent) {
+                      const fallback = document.createElement('div');
+                      fallback.innerText = '📚';
+                      fallback.style.fontSize = '5rem';
+                      fallback.style.color = '#ccc';
+                      fallback.style.display = 'flex';
+                      fallback.style.alignItems = 'center';
+                      fallback.style.justifyContent = 'center';
+                      fallback.style.height = '100%';
+                      parent.appendChild(fallback);
+                    }
+                  }}
+                />
               </div>
               <h3>{book.title}</h3>
               <p className="author">{book.author}</p>
@@ -109,7 +116,6 @@ const Books = () => {
         </div>
       </div>
 
-      {/* Pagination */}
       {totalPages > 1 && (
         <div className="pagination">
           <button 
