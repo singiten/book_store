@@ -55,12 +55,20 @@ const Books = () => {
 
   // Helper function to get the correct image URL
   const getImageUrl = (coverImage) => {
-    if (!coverImage) return '/default-book.jpg';
-    // If it's already a full URL (starts with http), use it directly
-    if (coverImage.startsWith('http')) return coverImage;
-    // Otherwise, add the backend URL
-    return `https://book-store-5sk4.onrender.com${coverImage}`;
-  };
+  if (!coverImage) return '/default-book.jpg';
+  
+  // Check for ANY full URL (http or https)
+  if (coverImage.startsWith('http://') || coverImage.startsWith('https://')) {
+    return coverImage;
+  }
+  
+  // Also check for cloudinary specifically (belt and suspenders)
+  if (coverImage.includes('cloudinary.com')) {
+    return coverImage;
+  }
+  
+  return `https://book-store-5sk4.onrender.com${coverImage}`;
+};
 
   if (loading) return <div className="loading">Loading books...</div>;
 
