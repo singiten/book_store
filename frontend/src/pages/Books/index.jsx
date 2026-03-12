@@ -53,6 +53,15 @@ const Books = () => {
     setCurrentPage(1);
   };
 
+  // Helper function to get the correct image URL
+  const getImageUrl = (coverImage) => {
+    if (!coverImage) return '/default-book.jpg';
+    // If it's already a full URL (starts with http), use it directly
+    if (coverImage.startsWith('http')) return coverImage;
+    // Otherwise, add the backend URL
+    return `https://book-store-5sk4.onrender.com${coverImage}`;
+  };
+
   if (loading) return <div className="loading">Loading books...</div>;
 
   return (
@@ -85,7 +94,7 @@ const Books = () => {
           {books.map(book => (
             <Link to={`/books/${book.slug}`} key={book._id} className="book-card">
               <img 
-                src={book.coverImage ? `http://localhost:5001${book.coverImage}` : '/default-book.jpg'} 
+                src={getImageUrl(book.coverImage)} 
                 alt={book.title}
               />
               <h3>{book.title}</h3>
