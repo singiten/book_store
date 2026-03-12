@@ -30,7 +30,7 @@ const Books = () => {
         category: filters.category || undefined
       };
       const response = await getBooks(params);
-      console.log('Books data:', response.data.books);
+      console.log('RAW BOOK DATA:', response.data.books);
       setBooks(response.data.books);
       setTotalPages(response.data.totalPages);
       setLoading(false);
@@ -81,38 +81,42 @@ const Books = () => {
         </aside>
 
         <div className="books-grid">
-          {books.map(book => (
-            <Link to={`/books/${book.slug}`} key={book._id} className="book-card">
-              <div className="book-image-container">
-                {/* DIRECT DISPLAY - NO CONDITIONS */}
-                <img 
-                  src={book.coverImage} 
-                  alt={book.title}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  onError={(e) => {
-                    console.log('Failed to load:', book.coverImage);
-                    e.target.style.display = 'none';
-                    // Show fallback text
-                    const parent = e.target.parentElement;
-                    if (parent) {
-                      const fallback = document.createElement('div');
-                      fallback.innerText = '📚';
-                      fallback.style.fontSize = '5rem';
-                      fallback.style.color = '#ccc';
-                      fallback.style.display = 'flex';
-                      fallback.style.alignItems = 'center';
-                      fallback.style.justifyContent = 'center';
-                      fallback.style.height = '100%';
-                      parent.appendChild(fallback);
-                    }
-                  }}
-                />
+          {books.map(book => {
+            // LOG THE EXACT URL FOR EACH BOOK
+            console.log(`Book: ${book.title}, Cover URL:`, book.coverImage);
+            
+            return (
+              <div key={book._id} className="book-card">
+                <div className="book-image-container">
+                  {/* DIRECT URL - NO FUNCTIONS, NO CONDITIONS */}
+                  <img 
+                    src={book.coverImage} 
+                    alt={book.title}
+                    style={{ 
+                      width: '100%', 
+                      height: '250px', 
+                      objectFit: 'cover',
+                      backgroundColor: '#f0f0f0'
+                    }}
+                    onError={(e) => {
+                      console.log('ERROR LOADING:', book.coverImage);
+                      e.target.style.display = 'none';
+                      // Add fallback text
+                      const parent = e.target.parentElement;
+                      if (parent) {
+                        parent.innerHTML = '<div style="height:250px; display:flex; align-items:center; justify-content:center; background:#f0f0f0; color:#999;">📚 No Image</div>';
+                      }
+                    }}
+                  />
+                </div>
+                <Link to={`/books/${book.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <h3>{book.title}</h3>
+                  <p className="author">{book.author}</p>
+                  <p className="price">{book.priceETB} Birr</p>
+                </Link>
               </div>
-              <h3>{book.title}</h3>
-              <p className="author">{book.author}</p>
-              <p className="price">{book.priceETB} Birr</p>
-            </Link>
-          ))}
+            );
+          })}
         </div>
       </div>
 
