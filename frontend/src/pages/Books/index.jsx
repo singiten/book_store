@@ -30,6 +30,7 @@ const Books = () => {
         category: filters.category || undefined
       };
       const response = await getBooks(params);
+      console.log('Books data:', response.data.books); // Debug log
       setBooks(response.data.books);
       setTotalPages(response.data.totalPages);
       setLoading(false);
@@ -52,23 +53,6 @@ const Books = () => {
     setFilters({ ...filters, category: e.target.value });
     setCurrentPage(1);
   };
-
-  // Helper function to get the correct image URL
-  const getImageUrl = (coverImage) => {
-  if (!coverImage) return '/default-book.jpg';
-  
-  // Check for ANY full URL (http or https)
-  if (coverImage.startsWith('http://') || coverImage.startsWith('https://')) {
-    return coverImage;
-  }
-  
-  // Also check for cloudinary specifically (belt and suspenders)
-  if (coverImage.includes('cloudinary.com')) {
-    return coverImage;
-  }
-  
-  return `https://book-store-5sk4.onrender.com${coverImage}`;
-};
 
   if (loading) return <div className="loading">Loading books...</div>;
 
@@ -101,10 +85,22 @@ const Books = () => {
         <div className="books-grid">
           {books.map(book => (
             <Link to={`/books/${book.slug}`} key={book._id} className="book-card">
-              <img 
-                src={getImageUrl(book.coverImage)} 
-                alt={book.title}
-              />
+              {/* SIMPLIFIED IMAGE DISPLAY */}
+              <div className="book-image-container">
+                {book.coverImage && book.coverImage.includes('cloudinary') ? (
+                  <img 
+                    src={book.coverImage} 
+                    alt={book.title}
+                    onError={(e) => {
+                      console.log('Image failed to load:', book.coverImage);
+                      e.target.style.display = 'none';
+                    }}
+                    onLoad={() => console.log('Image loaded successfully')}
+                  />
+                ) : (
+                  <div className="no-image">📚</div>
+                )}
+              </div>
               <h3>{book.title}</h3>
               <p className="author">{book.author}</p>
               <p className="price">{book.priceETB} Birr</p>
